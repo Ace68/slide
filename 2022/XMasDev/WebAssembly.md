@@ -1,21 +1,13 @@
 ## WebAssebly
-
-Prima di procedere alla scoperta di WebAssembly, cerchiamo di capire, ripercorrendo un pò la storia, come mai siamo arrivati ad aver bisogno di WebAssembly.
-
-Correva l'anno 1989 quando Time Berners Lee, insieme a Robert Cailliau, lavorando al CERN, si accorsero che il problema della comunicazione e dello scambio di documenti fra persone che utilizzano sistemi diversi andava risolto con strumenti tecnici, e diedero vita al formato HTML.
-
-Ben presto le pagine statiche divennero un limite alla diffusione del Web, e Netscape decise di asssumere un ingegnere, Brendan Eich, con lo scopo di creare un linguaggio adatto ad essere eseguito nel browser. Detto fatto, nacque JavaScript.
-
-Per un pò di tempo la situazione sembrava essersi assestata, ma nuovamente le esigenze di distribuire di applicazioni complesse via web tornò alla ribalta e Google, nel 2014, propose NativeClient (NaCl) ed il fratello maggiore PNaCl. In effetti questo è stato un grande passo in avanti, perchè Google era riuscita a portare nel browser applicativi scritti con linguaggi di alto livello, e performance nettamente superiori a JavaScript, con un paio di limiti ... era possibile eseguire NaCl solo in Chrome, il browser di casa Google, e si poteva scaricare il plugin solo dall'appstore di Google.
-
-Nell'era della guerra fra browser, è la volta di Mozilla che rilancia proponendo *asm.js*. Questa volta la portabilità è garantita, ma a scapito delle prestazioni.
-
-Il pregio di *asm.js* è quello però di aver aperto le porte a WebAssembly. Nel 2015 infatti è ancora Brendan Eich ad annunciare una grossa novità, ossia WebAssembly.
-
-Per essere precisi, dice lo stesso Brendan Eich, il progetto era già attivo da un pò, ed era nato con l'idea di essere open source, ma considerando che fra i primi a sostenere l'idea c'erano Microsoft, Google e AutoCAD, c'è voluto un minimo di tempo per trovare i giusti accordi di collaborazione.
+C'è una storia poco nota in cui sono incappato ultimamente, che parla di Babbo Natale e delle difficoltà che ha dovuto affrontare negli anni per adattarsi all'aumentare delle richieste ricevute dai bambini di tutto il mondo.
+Verso la fine degli anni '80, la sua popolarità stava raggiungendo livelli incredibili e si rese necessario studiare un modo nuovo per consentire ali uffici locali degli elfi di comunicare alla sede centrale le lettere dei bambini. Della cosa fu incaricato un certo Berners-Lee, il quale dopo lunghi ragionamenti se ne uscì con HTML, un linguaggio in grado di codificare documenti per la trasmissione via web dei dati su lunga distanza.
+All'inizio la cosa sembrò bastare, ma poi i bambini che crescevano volevano poter rendere sempre più speciali e interattive le proprie letterine, e così il giovane Brendan Eich, dell'uffico della Netscape, in preda alla frustrazione dell'ennesima letterina uguale a quella di migliaia di altri bambini decise di inventare JavaScript ... e il mondo non fu mai più lo stesso.
+C'è da dire, però, che qua e là qualche manipolo di scalmanati non si riusciva proprio ad accontentare da quanto offerto da JavaScript; avevano letterine scritte scritte anni prima di loro, dai loro genitori e nonni, ed erano bellissime, ma impossibili da rappresentare con HTML e JavaScript.
+Gli ingegneri elfici di Google provarono a proporre NaCl, ma volevano che tutti mettessero il loro timbro sui propri scritti. Allora arrivò Mozilla, i cui elfi vollero fare al mondo un regalo straordinario con una tecnologia, asm.js, che era in grado di trasformare qualunque letterina in un contenuto web. C'era solo un problema: le lettere che ne risultavano erano fuori formato ed arrivavano a Babbo Natale fuori tempo massimo.
+Nel frattempo arrivammo all'anno 2015, ed il piccolo Brendan Eich era diventato papà e stava vedendo i proprio bambini avere la sua stessa frustrazione di quando era piccolo ... allora decise che era il momento di tornare in azione per trovare una soluzione definitiva. Si rifugiò nel capanno in giardino per 5 giorni e 5 notti, chiese aiuto a qualche amico divenuto importante, e ne uscì con WASM. Finalmente il mondo aveva un modo per trasmettere qualunque tipo di letterina via web, in modo veloce e sicuro!
+Quella che vi stiamo per raccontare è l'idea che ha convinto tutti gli elfi di Babbo Natale e dato un futuro alla festa che tutti amiamo!
 
 ### Quindi cos'è WebAssembly?
-
 Leggendo dal sito ufficiale leggiamo, testualmente "è un formato di istruzioni binarie per una stack-based virtual machine". Chiaro, no? Ora, io non so esattamente cos'è una stack-based virtual machine, ma quello che sicuramente mi importa di questa definizione è che si tratta di una virtual machine, ossia un processore, e tutto quanto il necessario, che non esiste realmente, ma che ha il solo scopo di rendere facile la compilazione del codice per svariate architetture reali, e questo per me ha un solo significato: "portabilità".
 
 Un esempio? Ho detto poco fa che asm.js è stato fondamentale per la concezione e la realizzazione di WebAssembly. Infatti, fra i primi linguaggi ad essere compilati in Wasm ci sono C e C++, ed il compilatore che ha reso possibile questo è Emscripten; ebbene Emscripten originariamente era un compilatore per *asm.js*.
@@ -66,6 +58,19 @@ WASI è l'acronimo di WebAssembly System Interface. E' un'API progettata dal Tea
 WASI è progettato per essere indipendente dai browser, quindi non dipende dalle API Web, o da JavaScript e nemmeno è limitato dalla necessità di essere compatibile con JavaScript. Per quanto riguarda la sicurezza, visto che siamo appunto in ambito Web, WASI estende le proprietà della sandbox di WebAssembly all'I/O.
 
 ### WAGI
-WAGI è l'acronimo di WebAssembly Gateway Interface, che ricorda ai dev un pò più attempati come me, un altro componente del tutto simile, ossia CGI (Common Gateway Interface). Questi due oggetti condividono la stessa idea di base, ossia gestire le richieste HTTP. Il Web Server riceve la chiamata HTTP e avvia un processo per gestirla, in questo caso un processo isolato, quindi un eventuale suo malfunzionamento non compromette la stabilità dell'applicazione.
+WAGI è l'acronimo di WebAssembly Gateway Interface, che ricorda ai dev un pò più attempati come me, un altro componente del tutto simile, ossia CGI (Common Gateway Interface).
+WAGI è conforme alle specifiche CGI 1.1 (RFC 3875).
+Questi due oggetti condividono la stessa idea di base, ossia gestire le richieste HTTP. Il Web Server riceve la chiamata HTTP e avvia un processo per gestirla, in questo caso un processo isolato, quindi un eventuale suo malfunzionamento non compromette la stabilità dell'applicazione.
 
 Il vantaggio di WAGI è che è costruito su Wasmtime, che oltre a garantirci l'isolamento grazie al supporto della sandbox, ci permette di non avere ulteriori framework di mezzo, rendendo il tutto estremamente snello.
+
+### .NET
+La nuova versione del .NET framework ha introdotto diverse novità e miglioramenti per lo sviluppo web. In primis, grazie proprio al supporto di WebAssembly, ora è possibile sviluppare un'applicazione web interamente utilizzando lo stesso linguaggio.
+Il miglioramento degli algoritmi di cryptografia consentono ora di salvare informazioni nel browser in modo più sicuro, fermo restando che si tratta sempre di applicazioni che girando appunto nel browser, espongono tutte le informazioni.
+L'interoperabilità con JavaScript è notevolmente migliorata, consenentendo ora sia l'esecuzione di codice JavaScript all'interno di C#, ma anche l'esecuzione di codice C# all'interno di JavaScript.
+(JSImport e JSExport)
+Altra grossa novità è rappresentata dall'introduzione della compilazione AOT (Ahead of Time) che garantisce una velocità di esecuzione nettamente superiore
+
+### Docker
+Dopo una paio di twit un pò ambigui da parte del co-founder Solomon Hykes riguardo WebAssembly, Docker pare aver preso una propria strada per il supporto a WebAssembly.
+Recentemente è stato annunciato il pieno supporto ai moduli WebAssembly per essere eseguiti direttamente all'interno dei container Docker. Grazie al supporto da parte di Docker a WasmEdge con un singolo comando (docker compose up) sarà possibile buildare, condividere ed eseguire un'applicazione Wasm in un container Docker.
