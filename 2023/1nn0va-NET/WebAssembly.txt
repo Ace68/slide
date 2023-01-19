@@ -1,0 +1,24 @@
+La storia di WebAssembly inizia da molto lontano. Per capire l'esigenza di WebAssembly oggi bisogna capire da dove è partito il tutto.
+Nel 1989, un allora giovane ricercatore, Tim Berners-Lee, alla sua seconda borsa di studio al CERN, capì che la soluzione al problema della condivisione
+di materiale fra tuttii ricercatori presenti al CERN doveva essere una soluzioone tecnica. Fu così che perfezionò lo studio fatto durante la sua prima 
+permanenza al CERN e inventò l'HTML, un linguaggio di markup, in grado di girare all'interno di un'applicazione, il browser, installabile su tutti i sistemi operativi.
+La popolarità di HTML esplore velocemente, ed ovviamente tutte le aziende furono ingolosite dalla possibilità di mostrare al mondo i propri prodotti e/o servizi, al punto che
+le pagine statiche offerte da HTML cominciarono ad andare un pochino strette ai più esigenti.
+Nel 1995 Netscape, produttrice di un browser allora in guerra con Internet Explorer di Microsoft, assunse Bernard Eich, un giovene ingegnere, con l'intento di realizzare
+un linguaggio di programmazione che potesse essere eseguito, o meglio interpretato, all'interno del browser. Il risultato è ciò che ancora oggi tutti noi utilizziamo, ossia
+JavaScript, e nulla fu più come prima.
+Si era di fatto aperta la strada verso le applicazione nel browser, ossia applicazioni usufruibili da tutti i dispositivi in grado di aver installato un browser, indifferentemente dal 
+tipo di Sistema Operativo sottostante.
+Ben presto però ci si rese conto che le prestazioni offerte da JavaScript non erano le stesse offerte da linguaggi di alto livello quali C o C++. 
+(introdurre qui la differenza tra compilato ed interpretato?)
+La prima a muoversi per cercare di risolvere il problema fu Google che nel 2011 diede origine al progetto Native Client (NaCl), ed in seguito al fratello maggiore PNaCl (Pinnacle), 
+proprio con l'intento di consentire a programmi scritti in C/C++ di poter girare all'interno di un browser. Il risultato ottenuto fu tutt'altro che trascurabile. Le prestazioni erano
+ottime, ma il tutto poteva girare solo ed sclusivamente nel browser Chrome, e poteva essere scaricato dallo store di Google. Condizioni inaccettabili per la direzione che stava prendendo 
+il mercato.
+Nel 2013 è la volta di Mozilla che da origine al progetto asm.js. Questo progetto si dimostrerà un progetto chiave per il successo di WebAssembly. Il vantaggio di as.js è che è un progetto 
+completamente open source e completamente disponibile su tutti i browser, ma, purtroppo, con prestaizoni nettamente inferiori a PNaCl.
+Proprio quando la situazione sembrava ferma nel 2015 ecco riapparire il nostro amico Brendan Eich che annuncia al mondo la nascita del progetto open-source WebAssembly.
+In verità lo stesso Eich si scusa perchè il progetto era partito qualche mese prima, ma visto le aziende che per prime erano salite a bordo (Microsoft, Google e AutoCad) la firma dei relativi
+accordi aveva fatto tardare l'annuncio.
+In brevissimo tempo tutte le maggiorni aziende si unirono al progetto e la guerra ad imporre il proprio browser di riferimento convertì nella battaglia per avere uno standard che potesse 
+funzionare in tutti i browser. Proprio come, nel lontano 1989, un certo Tim Berners-Lee aveva intuito.
