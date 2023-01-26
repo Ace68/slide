@@ -1,3 +1,11 @@
+Prima di iniziare, partiamo col dire che Webassembly è una tecnologia giovane ma non giovanissima.
+
+In un'epoca di boom tecnologici guidati da un hype sfrenato, che durano qualche mese o pochi anni e poi svaniscono nel nulla, WA è invece una tecnologia che sta gradualmente guadagnando inerzia, conquistando utilizzatori ed estimatori ogni giorno che passa, dagli amatori a, come vedremo, le grandi multinazionali.
+
+Questo è probabilmente per via del fatto che WA sia una tecnologia nata per risolvere uno specifico set di problemi ma che, col tempo, si è scoperta in grado di migliorare la vita a noi ingegneri in una gamma di situazioni che vanno molto oltre il suo obiettivo iniziale.
+
+Ma iniziamo da un po' di storia...
+
 # Storia
 La storia di WebAssembly inizia da molto lontano. Per capire l'esigenza di WebAssembly oggi bisogna capire da dove è partito il tutto.
 Nel 1989, un allora giovane ricercatore, Tim Berners-Lee, alla sua seconda borsa di studio al CERN, capì che la soluzione al problema della condivisione
