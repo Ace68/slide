@@ -131,7 +131,7 @@ Ciò che abbiamo visto sino ad ora come caratteristiche di WebAssembly, lo rende
 ### Docker e WebAssembly
 Possiamo utilizzare WebAssembly per la creazione di famiglie di microservizi, ognuno che svolga un semplice task (AWS Lambda, Azure Functions)
 Questo ci sonsente di mantenere il consumo delle risorse al minimo (quando non servono vengono spenti)
-Possono scalare rapidamente, in virtù del fatto che un modulo WebAssebly impiega pochi millisecondi ad attivarsi
+Possono scalare rapidamente, in virtù del fatto che un modulo WebAssembly impiega pochi millisecondi ad attivarsi
 
 Possiamo utilizzare Docker per gestire lo stato e abilitare la comunicazione fra i diversi moduli WebAssembly
 Questo ci serve per i processi che hanno una lunga durata nel tempo (Saga)
