@@ -1,0 +1,16 @@
+Scriviamo noi il codice e usiamo il solito wks di iad con gli esercizi
+Farlo più interattivo possibile per coinvolgere i partecipanti
+
+Scaletta
+-----------------------
+- Presentazione dello scenario (slide 3, 4)
+- Lavoriamo con il branch: master (spostiamo il test che c'è già, così lo scriviamo da zero)
+- Specifichiamo che il codice c'è già e non è in TDD il primo per questioni di tempo
+- Slide 4: Spieghiamo i pezzi e mostriamo l'equivalente nel codice (uno parla e l'altro gira per il codice)
+- Parliamo della prima fase ovvero la creazione della programmazione giornaliera
+- Mostriamo il CommandHandlerBase e poi l'implementazione specifica per il comando CreateDailyProgramming
+- Torniamo alla slide e parliamo dell'aggregato e dell'emissione dell'evento
+- Andiamo sul codice e mostriamo aggregato ed EventHandlerBase e DailyProgrammingCreatedEventHandler
+- Slide 5 e domandiamo come testare
+  Mentre chiediamo "solo con Unit test?" mostrare il codice UserCommandsHandlersTests.cs
+- Iniziamo a scrivere il primo test e via
