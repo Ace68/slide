@@ -1,6 +1,56 @@
+## Dati
+Il mio ruolo, all'interno dell'azienda per cui lavoro, mi offre la possibilità di incontrare Clienti di diverse tipologie, con esigenze completamente diverse fra loro,
+ma tutti hanno un fattore comune. Sono assetati di dati. Nessuno, in nessun business, oggi, può fare a meno di raccogliere ed analizzare Dati.
+Indipendentemente dal settore in cui operiamo, o dall'Azienda in cui lavoriamo, abbiamo bisogno di raccogliere dati per costruire sistemi sempre più intelligenti per varie ragioni
+  - Fornire la miglior esperienza ai clienti basata su dati personalizzati
+  - Ridurre i costi e i tempi operativi attraverso ottimizzazioni basate sui dati
+  - Mettere i dipendenti in condizione di poter prendere decisioni migliori grazie all'analisi delle tendenze/consumi e al business
+
+
+Proviamo a ripercorrere la storia della raccolta dei dati negli ultimi 50 anni
+Siamo partiti da architetture che portavano a salvare i dati in una Warehouse per passare a soluzioni più grandi, LakeHouse e finire, ad oggi, nel cloud avendo a disposizione
+storage più grandi, ma sempre in un'ottica molotica della raccolta dati.
+Intendiamoci, la soluzione a monolite è il modo perfetto per partire velocemente a produrre del valore tangibile, questo non solo nella raccolta dei dati. Ma pone dei vincoli
+nella scalabilità e nell'elasticità al cambiamento.
+Qual'è il modo migliore per calare un monolite? Tecnicamente parlando è quello di decomporlo
+Possiamo operare una decomposizione tecnologica, ossia separare i vari processi che ci portano ad ottenere l'attuale risultato finale. Questo ci consentirà sicuramente
+una maggior scalabilità a fronte del fatto che potremo distribuire i processi su macchine diverse.
+Ma sappiamo tutti che le necessità, le richieste da parte del business, o dei nostri Clienti, non sono mai lineari, sono piuttosti ortogonali ai nostri processi, quindi
+una separazione per processi andrà sicuramente a scontrarsi con i Team, o il Team, che dovranno gestire il valore da distribuire agli utenti finali.
+E allora? Proviamo a creare Team di Data Engineers, o ML engineers super specializzati, dei silos per ogni richiesta. Ma in questo momento, nuovamente, perderemmo di vista
+la visione d'insieme dell'intero Dominio, a scapito della qualità dei risultati forniti. Quelli bravi nella progettazione di modelli di ML direbbero che il rischio è di over-fittare
+i nostri modelli.
+
+
+Molte delle complessità tecniche che le organizzazioni si trovano ad affrontare oggi derivano dal modo in cui abbiamo diviso i dati.
+Ci sono diversi sintomi che si possono notare che denotano alcune problematiche che impediscono il successo dell'attuale modalità di gestione dei dati
+  - Fail to boostrap
+
+Dati Analitici e Dati Operativi. Come abbiamo isolato i Team che li gestiscono, gli stack tecnologici che li supportano e come questi li supportano e li integrano.
+
+Data Mesh riconosce la differenza fra Dati Operativi e Dati Analitici ed introduce un nuovo modello di stretta integrazione tra i due, rispettandone le differenze.
+
+### Dati Operativi
+  - **Gestione del Business**
+  - **Servire gli Utenti**
+
+
+I Dati Operativi sono i dati salvati nei database dei microservizi delle nostre applicazioni ed hanno la responsabilità di mantenere lo stato corrente dei business.
+Sono dati fondamentali per le scelte continue che gli utilizzatori dei nostri software devono continuamente fare.
+Questi dati sono assolutamente privati, quindi non accessibili da altri servizi.
+Cosa condivere con il mondo esterno è responsabilità del microservizio. In che modo? Tramite eventi, in particolare tramite Integration Event.
+
+### Dati Analitici
+Rappresentano la visione storica, integrata e aggregata dei dati creati come prodotto secondario dalla gestione aziendale.
+Viene mantenuto e utilizzato dai sistemi OLAP (online analytical processing).
+I dati analitici sono la visione temporale, storica e spesso aggregata dei fatti dell’azienda nel tempo. Vengono modellati per fornire informazioni retrospettive o future.
+I dati analitici sono ottimizzati per la logica analitica, l’addestramento di modelli di apprendimento automatico e la creazione di report e visualizzazioni all’esterno”,
+ovvero i dati a cui accedono direttamente i consumatori analitici.
+
 ## Data Mesh
-Uno dei principi base di DDD è il modo di affrontare il problema partendo dalle esigenze del business, considerando i dati un risultato finale,
-ed ora mi ritrovo a raccontare di come DDD si occupa di raccogliere i dati.
+L'ipotesi sotto cui è nato Data Mesh è stata proprio quella di ceracre di analizzare e capire il perchè del fallimento attuale nella raccolta e nella gestione del Dato.
+Data Mesh non può esistere senza un'importante investmento in cultura del dato a tutti i livelli aziendali e riorganizzazione dei Team di data analytics.
+Basa i sui principi sul Domain-Driven Design, andiamo quindi prima a fare un brevissimo riepilgo su questo approccio.
 
 ### DDD
 Tra la fine del 2003 e l'inizio del 2004 Eric Evans pubblica il libro "DDD Tackling Complexity in the Heart of Software" (Blue Book), seguito, nel 2012, 
@@ -60,52 +110,7 @@ In questo modo abbiamo due sistemi ottimizzati ognuno per il proprio scopo.
 Inutile ripetere che riguardo il pattern CQRS ci sarebbe da scrivere un intero libro, ma, come nei due casi precedenti, a noi interessa sapere che ci sono degli eventi, ossia classi
 contenenti informazioni immutabili, a cui ci possiamo sottoscrivere per ricevere informazioni, che poi, è esattamente quello che cerchimamo come raccoglitori di dati!
 
-## Dati
-Indipendentemente dal settore in cui operiamo, o dall'Azienda in cui lavoriamo, abbiamo bisogno di raccogliere dati per costruire sistemi sempre più intelligenti per varie ragioni
-  - Fornire la miglior esperienza ai clienti basata su dati personalizzati
-  - Ridurre i costi e i tempi operativi attraverso ottimizzazioni basate sui dati
-  - Mettere i dipendenti in condizione di poter prendere decisioni migliori grazie all'analisi delle tendenze/consumi e al business
 
-Proviamo a ripercorrere la storia della raccolta dei dati negli ultimi 50 anni
-Siamo partiti da architetture che portavano a salvare i dati in una Warehouse per passare a soluzioni più grandi, LakeHouse e finire, ad oggi, nel cloud avendo a disposizione
-storage più grandi, ma sempre in un'ottica molotica della raccolta dati.
-Intendiamoci, la soluzione a monolite è il modo perfetto per partire velocemente a produrre del valore tangibile, questo non solo nella raccolta dei dati. Ma pone dei vincoli
-nella scalabilità e nell'elasticità al cambiamento.
-Qual'è il modo migliore per calare un monolite? Tecnicamente parlando è quello di decomporlo
-Possiamo operare una decomposizione tecnologica, ossia separare i vari processi che ci portano ad ottenere l'attuale risultato finale. Questo ci consentirà sicuramente
-una maggior scalabilità a fronte del fatto che potremo distribuire i processi su macchine diverse.
-Ma sappiamo tutti che le necessità, le richieste da parte del business, o dei nostri Clienti, non sono mai lineari, sono piuttosti ortogonali ai nostri processi, quindi
-una separazione per processi andrà sicuramente a scontrarsi con i Team, o il Team, che dovranno gestire il valore da distribuire agli utenti finali.
-E allora? Proviamo a creare Team di Data Engineers, o ML engineers super specializzati, dei silos per ogni richiesta. Ma in questo momento, nuovamente, perderemmo di vista
-la visione d'insieme dell'intero Dominio, a scapito della qualità dei risultati forniti. Quelli bravi nella progettazione di modelli di ML direbbero che il rischio è di over-fittare
-i nostri modelli.
-
-
-
-Molte delle complessità tecniche che le organizzazioni si trovano ad affrontare oggi derivano dal modo in cui abbiamo diviso i dati.
-Ci sono diversi sintomi che si possono notare che denotano alcune problematiche che impediscono il successo dell'attuale modalità di gestione dei dati
-  - Fail to boostrap
-
-Dati Analitici e Dati Operativi. Come abbiamo isolato i Team che li gestiscono, gli stack tecnologici che li supportano e come questi li supportano e li integrano.
-
-Data Mesh riconosce la differenza fra Dati Operativi e Dati Analitici ed introduce un nuovo modello di stretta integrazione tra i due, rispettandone le differenze.
-
-### Dati Operativi
-  - **Gestione del Business**
-  - **Servire gli Utenti**
-
-
-I Dati Operativi sono i dati salvati nei database dei microservizi delle nostre applicazioni ed hanno la responsabilità di mantenere lo stato corrente dei business.
-Sono dati fondamentali per le scelte continue che gli utilizzatori dei nostri software devono continuamente fare.
-Questi dati sono assolutamente privati, quindi non accessibili da altri servizi.
-Cosa condivere con il mondo esterno è responsabilità del microservizio. In che modo? Tramite eventi, in particolare tramite Integration Event.
-
-### Dati Analitici
-Rappresentano la visione storica, integrata e aggregata dei dati creati come prodotto secondario dalla gestione aziendale.
-Viene mantenuto e utilizzato dai sistemi OLAP (online analytical processing).
-I dati analitici sono la visione temporale, storica e spesso aggregata dei fatti dell’azienda nel tempo. Vengono modellati per fornire informazioni retrospettive o future.
-I dati analitici sono ottimizzati per la logica analitica, l’addestramento di modelli di apprendimento automatico e la creazione di report e visualizzazioni all’esterno”,
-ovvero i dati a cui accedono direttamente i consumatori analitici.
 
 ### Le Dimensioni del Cambiamento
 Data Mesh introduce alcuni cambiamenti, sia tecnici che organizzativi, rispetto al precedente approccio alla gestione dei dati.
